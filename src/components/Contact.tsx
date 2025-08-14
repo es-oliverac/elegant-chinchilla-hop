@@ -186,15 +186,15 @@ const Contact = () => {
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm">Email</span>
-                    <Badge variant="secondary">< 24h</Badge>
+                    <Badge variant="secondary">{"< 24h"}</Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm">Llamada</span>
-                    <Badge variant="secondary">< 2h</Badge>
+                    <Badge variant="secondary">{"< 2h"}</Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm">WhatsApp</span>
-                    <Badge className="bg-green-500">< 30min</Badge>
+                    <Badge className="bg-green-500">{"< 30min"}</Badge>
                   </div>
                 </div>
               </CardContent>
