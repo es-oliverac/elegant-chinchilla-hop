@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Brain, Zap } from "lucide-react";
+import { env } from "@/lib/env";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,14 @@ const Header = () => {
     { name: "Contacto", href: "#contact" },
   ];
 
+  const handleConsultaClick = () => {
+    window.open(env.getWhatsAppUrl("Hola, me gustaría agendar una consulta gratuita"), '_blank');
+  };
+
+  const handleProyectoClick = () => {
+    window.open(env.CALENDLY_URL, '_blank');
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +35,7 @@ const Header = () => {
               <Zap className="h-4 w-4 text-purple-600 absolute -top-1 -right-1" />
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Agencia IA Blockchain
+              {env.APP_NAME}
             </h1>
           </div>
 
@@ -45,8 +54,13 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline">Consulta Gratis</Button>
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+            <Button variant="outline" onClick={handleConsultaClick}>
+              Consulta Gratis
+            </Button>
+            <Button 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              onClick={handleProyectoClick}
+            >
               Comenzar Proyecto
             </Button>
           </div>
@@ -71,8 +85,13 @@ const Header = () => {
                   </a>
                 ))}
                 <div className="flex flex-col space-y-3 pt-4 border-t">
-                  <Button variant="outline">Consulta Gratis</Button>
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600">
+                  <Button variant="outline" onClick={handleConsultaClick}>
+                    Consulta Gratis
+                  </Button>
+                  <Button 
+                    className="bg-gradient-to-r from-blue-600 to-purple-600"
+                    onClick={handleProyectoClick}
+                  >
                     Comenzar Proyecto
                   </Button>
                 </div>

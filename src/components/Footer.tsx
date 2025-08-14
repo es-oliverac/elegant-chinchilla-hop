@@ -12,6 +12,7 @@ import {
   Phone,
   MapPin
 } from "lucide-react";
+import { env } from "@/lib/env";
 
 const Footer = () => {
   const footerLinks = {
@@ -50,11 +51,17 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-600" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-400" },
-    { icon: Facebook, href: "#", label: "Facebook", color: "hover:text-blue-700" },
-    { icon: Youtube, href: "#", label: "YouTube", color: "hover:text-red-600" }
+    { icon: Linkedin, href: env.LINKEDIN_URL, label: "LinkedIn", color: "hover:text-blue-600" },
+    { icon: Twitter, href: env.TWITTER_URL, label: "Twitter", color: "hover:text-blue-400" },
+    { icon: Facebook, href: env.FACEBOOK_URL, label: "Facebook", color: "hover:text-blue-700" },
+    { icon: Youtube, href: env.YOUTUBE_URL, label: "YouTube", color: "hover:text-red-600" }
   ];
+
+  const handleSocialClick = (url: string) => {
+    if (url !== '#') {
+      window.open(url, '_blank');
+    }
+  };
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -88,7 +95,7 @@ const Footer = () => {
                 <Zap className="h-4 w-4 text-purple-400 absolute -top-1 -right-1" />
               </div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Agencia IA Blockchain
+                {env.APP_NAME}
               </h3>
             </div>
             
@@ -100,15 +107,15 @@ const Footer = () => {
             <div className="space-y-3 mb-6">
               <div className="flex items-center space-x-3 text-sm">
                 <Mail className="h-4 w-4 text-blue-400" />
-                <span>hola@agenciaiaBlockchain.com</span>
+                <span>{env.CONTACT_EMAIL}</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <Phone className="h-4 w-4 text-blue-400" />
-                <span>+1 (555) 123-4567</span>
+                <span>{env.CONTACT_PHONE}</span>
               </div>
               <div className="flex items-center space-x-3 text-sm">
                 <MapPin className="h-4 w-4 text-blue-400" />
-                <span>Madrid, España</span>
+                <span>{env.CONTACT_ADDRESS}</span>
               </div>
             </div>
             
@@ -118,7 +125,8 @@ const Footer = () => {
                   key={index}
                   variant="ghost"
                   size="icon"
-                  className={`text-gray-400 ${social.color} transition-colors`}
+                  className={`text-gray-400 ${social.color} transition-colors cursor-pointer`}
+                  onClick={() => handleSocialClick(social.href)}
                 >
                   <social.icon className="h-5 w-5" />
                 </Button>
@@ -150,7 +158,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-gray-400">
-            © 2024 Agencia IA Blockchain. Todos los derechos reservados.
+            © 2024 {env.APP_NAME}. Todos los derechos reservados.
           </div>
           
           <div className="flex items-center space-x-6 text-sm">

@@ -1,0 +1,54 @@
+name: agencia-ia-blockchain
+services:
+  - type: app
+    data:
+      projectName: agencia-ia-blockchain
+      serviceName: web
+      source:
+        type: github
+        owner: your-github-username
+        repo: agencia-ia-blockchain
+        branch: main
+      build:
+        type: dockerfile
+        dockerfile: Dockerfile
+      deploy:
+        type: static
+        outputDir: dist
+        buildCommand: npm run build
+        installCommand: npm install
+      domains:
+        - host: your-domain.com
+          https: true
+          path: /
+      env:
+        - key: VITE_APP_NAME
+          value: "Agencia IA Blockchain"
+        - key: VITE_APP_URL
+          value: "https://your-domain.com"
+        - key: VITE_APP_ENV
+          value: "production"
+        - key: VITE_CONTACT_EMAIL
+          value: "hola@agenciaiaBlockchain.com"
+        - key: VITE_CONTACT_PHONE
+          value: "+1 (555) 123-4567"
+        - key: VITE_CONTACT_ADDRESS
+          value: "Madrid, España"
+        - key: VITE_LINKEDIN_URL
+          value: "https://linkedin.com/company/agencia-ia-blockchain"
+        - key: VITE_TWITTER_URL
+          value: "https://twitter.com/agencia_ia_bc"
+        - key: VITE_FACEBOOK_URL
+          value: "https://facebook.com/agencia-ia-blockchain"
+        - key: VITE_YOUTUBE_URL
+          value: "https://youtube.com/@agencia-ia-blockchain"
+        - key: VITE_WHATSAPP_NUMBER
+          value: "+1234567890"
+        - key: VITE_WHATSAPP_MESSAGE
+          value: "Hola, me interesa conocer más sobre sus servicios de IA y Blockchain"
+        - key: VITE_CALENDLY_URL
+          value: "https://calendly.com/agencia-ia-blockchain"
+      mounts: []
+      ports:
+        - published: 80
+          target: 80

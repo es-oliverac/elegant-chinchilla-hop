@@ -12,25 +12,26 @@ import {
   MessageSquare,
   Calendar
 } from "lucide-react";
+import { env } from "@/lib/env";
 
 const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      details: "hola@agenciaiaBlockchain.com",
+      details: env.CONTACT_EMAIL,
       description: "Respuesta en menos de 24 horas"
     },
     {
       icon: Phone,
       title: "Teléfono",
-      details: "+1 (555) 123-4567",
+      details: env.CONTACT_PHONE,
       description: "Lun - Vie, 9:00 AM - 6:00 PM"
     },
     {
       icon: MapPin,
       title: "Oficina",
-      details: "Madrid, España",
+      details: env.CONTACT_ADDRESS,
       description: "Reuniones presenciales disponibles"
     },
     {
@@ -50,6 +51,14 @@ const Contact = () => {
     "Ciberseguridad",
     "Otro"
   ];
+
+  const handleCalendlyClick = () => {
+    window.open(env.CALENDLY_URL, '_blank');
+  };
+
+  const handleWhatsAppClick = () => {
+    window.open(env.getWhatsAppUrl("Hola, necesito ayuda inmediata con un proyecto"), '_blank');
+  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-background to-gray-50/50">
@@ -96,7 +105,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-2 block">Teléfono</label>
-                    <Input placeholder="+1 (555) 123-4567" />
+                    <Input placeholder={env.CONTACT_PHONE} />
                   </div>
                 </div>
 
@@ -170,10 +179,17 @@ const Contact = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   ¿Necesitas hablar ahora? Agenda una videollamada de 30 minutos gratuita
                 </p>
-                <Button className="w-full mb-3 bg-gradient-to-r from-blue-600 to-purple-600">
+                <Button 
+                  className="w-full mb-3 bg-gradient-to-r from-blue-600 to-purple-600"
+                  onClick={handleCalendlyClick}
+                >
                   Agendar Llamada
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={handleWhatsAppClick}
+                >
                   WhatsApp Directo
                 </Button>
               </CardContent>
