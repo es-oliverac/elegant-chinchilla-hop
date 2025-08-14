@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  door-joyeria:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: door-joyeria-web
+
+  # Optional: Add a reverse proxy with SSL
+  nginx-proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - door-joyeria
+    restart: unless-stopped
+    container_name: door-joyeria-proxy
+    profiles:
+      - production
+
+networks:
+  default:
+    name: door-joyeria-network
