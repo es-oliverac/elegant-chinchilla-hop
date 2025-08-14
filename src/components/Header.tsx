@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, ShoppingCart, Search, User, Gem } from "lucide-react";
+import { Menu, Brain, Zap } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigation = [
     { name: "Inicio", href: "#" },
-    { name: "Anillos", href: "#products" },
-    { name: "Collares", href: "#products" },
-    { name: "Aretes", href: "#products" },
-    { name: "Pulseras", href: "#products" },
+    { name: "Servicios", href: "#services" },
+    { name: "Nosotros", href: "#about" },
+    { name: "Portafolio", href: "#portfolio" },
+    { name: "Equipo", href: "#team" },
     { name: "Contacto", href: "#contact" },
   ];
 
@@ -22,8 +21,13 @@ const Header = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Gem className="h-8 w-8 text-yellow-600" />
-            <h1 className="text-2xl font-bold text-primary">DOOR</h1>
+            <div className="relative">
+              <Brain className="h-8 w-8 text-blue-600" />
+              <Zap className="h-4 w-4 text-purple-600 absolute -top-1 -right-1" />
+            </div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Agencia IA Blockchain
+            </h1>
           </div>
 
           {/* Desktop Navigation */}
@@ -39,19 +43,11 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop Actions */}
+          {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
-                2
-              </Badge>
+            <Button variant="outline">Consulta Gratis</Button>
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              Comenzar Proyecto
             </Button>
           </div>
 
@@ -74,18 +70,10 @@ const Header = () => {
                     {item.name}
                   </a>
                 ))}
-                <div className="flex items-center space-x-4 pt-4 border-t">
-                  <Button variant="ghost" size="icon">
-                    <Search className="h-5 w-5" />
-                  </Button>
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="relative">
-                    <ShoppingCart className="h-5 w-5" />
-                    <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
-                      2
-                    </Badge>
+                <div className="flex flex-col space-y-3 pt-4 border-t">
+                  <Button variant="outline">Consulta Gratis</Button>
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600">
+                    Comenzar Proyecto
                   </Button>
                 </div>
               </nav>
